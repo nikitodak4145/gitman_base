@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Лог битв{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>⚔️ Лог битв</h1>
+    <p>Каждая победа над багом — шаг к чистому коду</p>
+</div>
+
+<div class="missions-stats">
+    <div class="stat-card">
+        <span class="stat-value">{{ missions.paginator.count }}</span>
+        <span class="stat-label">Всего битв</span>
+    </div>
+</div>
+
+<div class="missions-list">
+    {% for mission in missions %}
+    <div class="mission-card">
+        <div class="mission-icon">🐛</div>
+        <div class="mission-content">
+            <h3>{{ mission.title }}</h3>
+            <p>{{ mission.description }}</p>
+            <div class="mission-date">{{ mission.date|date:"d.m.Y H:i" }}</div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="empty-state">
+        <p>😢 Пока нет битв. Используй способность "Поток коммитов"!</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    {% if missions.has_previous %}
+        <a href="?page=1" class="page-link"><<</a>
+        <a href="?page={{ missions.previous_page_number }}" class="page-link"></a>
+    {% endif %}
+    
+    <span class="page-current">{{ missions.number }} / {{ missions.paginator.num_pages }}</span>
+    
+    {% if missions.has_next %}
+        <a href="?page={{ missions.next_page_number }}" class="page-link"></a>
+        <a href="?page={{ missions.paginator.num_pages }}" class="page-link">>></a>
+    {% endif %}
+</div>
+{% endblock %}

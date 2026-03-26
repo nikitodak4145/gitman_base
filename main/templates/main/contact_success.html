@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Сообщение отправлено{% endblock %}
+
+{% block content %}
+<div class="success-page">
+    <h1> Сообщение отправлено!</h1>
+    <p>Хранитель получил твой сигнал. Скоро ответит.</p>
+    <a href="/" class="btn">Вернуться на главную</a>
+</div>
+
+<style>
+.success-page {
+    text-align: center;
+    padding: 60px 20px;
+    background: #0f1a0f;
+    border-radius: 20px;
+    margin: 40px auto;
+    max-width: 600px;
+}
+</style>
+{% endblock %}

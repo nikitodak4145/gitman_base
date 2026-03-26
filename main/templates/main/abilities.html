@@ -1,0 +1,146 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Способности{% endblock %}
+
+{% block content %}
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<div class="page-header">
+    <h1> Способности Хранителя</h1>
+    <p>Три силы, которые помогают очищать код и сражаться с багами</p>
+</div>
+
+<div class="abilities-grid">
+    <!-- Способность 1-->
+    <div class="ability-card">
+        <div class="ability-icon"></div>
+        <h2>Взгляд чистоты</h2>
+        <p>Видит грязный код одним взглядом и превращает его в чистый.</p>
+        
+        <div id="bad-code" class="code-block">
+            <pre>{{ example.bad_code }}</pre>
+        </div>
+        
+        <div id="good-code" class="code-block" style="display: none;">
+            <pre>{{ example.good_code }}</pre>
+        </div>
+        
+        <button id="clean-code-btn" class="ability-btn"> Очистить взглядом</button>
+        <div id="code-result" class="result-message"></div>
+    </div>
+
+    <!-- Способность 2 -->
+    <div class="ability-card">
+        <div class="ability-icon"></div>
+        <h2>Поток коммитов</h2>
+        <p>Смывает баги потоком коммитов. Каждый баг попадает в лог битв.</p>
+        <button id="commit-flow-btn" class="ability-btn"> Смыть баг</button>
+        <div id="commit-result" class="result-message"></div>
+    </div>
+
+    <!-- Способность 3-->
+    <div class="ability-card">
+        <div class="ability-icon"></div>
+        <h2>Семя знаний</h2>
+        <p>Делится мудростью чистого кода. Получи случайный совет.</p>
+        <button id="wisdom-btn" class="ability-btn"> Получить совет</button>
+        <div id="wisdom-result" class="result-message"></div>
+    </div>
+</div>
+
+<style>
+    .page-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .abilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+    
+    .ability-card {
+        background: #111a11;
+        border: 2px solid #5a8f3c;
+        border-radius: 24px;
+        padding: 25px;
+        transition: all 0.1s linear;
+        box-shadow: 5px 5px 0 #2a3a2a;
+        text-align: center;
+    }
+    
+    .ability-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0 #5a8f3c;
+    }
+    
+    .ability-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+    
+    .ability-card h2 {
+        color: #a0ffa0;
+        margin-bottom: 15px;
+    }
+    
+    .ability-card p {
+        margin-bottom: 20px;
+        color: #c0ffc0;
+    }
+    
+    .ability-btn {
+        background: #1e2a1e;
+        border: 1px solid #5a8f3c;
+        padding: 10px 20px;
+        border-radius: 30px;
+        color: #c0ffc0;
+        cursor: pointer;
+        font-family: monospace;
+        font-size: 1rem;
+        transition: all 0.1s linear;
+        margin-top: 15px;
+    }
+    
+    .ability-btn:hover {
+        background: #5a8f3c;
+        color: #0a0f0a;
+        transform: scale(1.02);
+    }
+    
+    .code-block {
+        background: #0a0f0a;
+        padding: 15px;
+        border-left: 4px solid #5a8f3c;
+        text-align: left;
+        margin: 15px 0;
+        overflow-x: auto;
+    }
+    
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-all;
+        font-size: 0.9rem;
+    }
+    
+    .result-message {
+        margin-top: 15px;
+        padding: 8px;
+        background: #1e2a1e;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+</style>
+
+<script src="{% static 'js/abilities.js' %}"></script>
+{% endblock %}

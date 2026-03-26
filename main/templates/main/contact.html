@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+<style>
+    footer {
+        display: none;
+    }
+</style>
+<div class="contact-page">
+    <h1> Связаться с Хранителем</h1>
+    <p>Если нашёл баг, хочешь предложить идею или просто сказать "погнали" — пиши!</p>
+
+    <div class="contact-info">
+        <div class="info-card">
+            <h3>📧 Email</h3>
+            <p>keeper@seed.com</p>
+        </div>
+        <div class="info-card">
+            <h3>💬 Telegram</h3>
+            <p>@keeper_seed_bot</p>
+        </div>
+        <div class="info-card">
+            <h3>🐙 GitHub</h3>
+            <p>github.com/keeper</p>
+        </div>
+    </div>
+
+    <form method="post" class="contact-form">
+        {% csrf_token %}
+        {% if error %}
+    <div class="error-message" style="color: #ff9999; background: #2a1e1e; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+        {{ error }}
+    </div>
+        {% endif %}
+        <div class="form-group">
+            <label> Твоё имя</label>
+            <input type="text" name="name" placeholder="Как к тебе обращаться?" required>
+        </div>
+        <div class="form-group">
+            <label>💬 Сообщение для Хранителя</label>
+            <textarea name="message" rows="5" placeholder="Напиши что-нибудь... может, баг нашёл? Или просто привет?" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>🧠 Проверка: сколько будет 2 + 2?</label>
+            <input type="text" name="captcha" placeholder="Введите число" required>
+        </div>
+        
+        <button type="submit" class="btn"> ПОГНАЛИ, БРАТИШКА!</button>
+    </form>
+</div>
+{% endblock %}
